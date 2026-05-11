@@ -85,12 +85,12 @@ Single line:
 Multiple lines:
 ```hen
 .19x19
-_19bwb2w3
-_10Kb
-_8Kbw
-_7JbwMw
-_6Kbw
-_1Cw3bNwb2
+_19 bwb2w3
+_10 Kb
+_08 Kbw
+_07 JbwMw
+_06 Kbw
+_01 Cw3bNwb2
 .L7
 .K7w
 .b
@@ -106,14 +106,45 @@ Equivalent SGF:
 
 ### 2) The famous Ear-reddening move
 
-The following HEN represents the goban position of the famous **Ear-reddening Game**, played in 1846 by Shusaku against Gennan Inseki, immediately after the eponymous move. The marks are as shown in the Sensei's Library [article about the game](https://senseis.xmp.net/?EarReddeningMove#toc2):
+The following HEN (241 characters) represents the goban position of the famous **Ear-reddening Game**, played in 1846 by Shusaku against Gennan Inseki, immediately after the eponymous move. The marks are as shown in the Sensei's Library [article about the game](https://senseis.xmp.net/?EarReddeningMove#toc2):
 
 `_19Kbw2_18DbKbwNwPw2b_17Cw2FbJwb2w2Pwb_16Mb3Rb_15LbQb2_14Qbw2_13Ow3b3_12Pbw3b_11KbNbw2b3_10Nw2bRbw_9CwPwb2w_8Pwbwb_7NwPwbw2_6CwKbMbwPwb_5GbJwMbwbwbw_4CbEbHbMbw2bRw_3FbwbwLw2b4w2_2GbwKw2Nwb2Rbw_1JwMwObQbSb.K11b.w.M6-SQ.M5-SQ.M4-SQ.K6-SQ.J5-CR`
 
-Equivalent SGF:
+Multiple lines (for clarity / during manual entry):
+
+```hen
+_19 Kbw2
+_18 DbKbwNwPw2b
+_17 Cw2FbJwb2w2Pwb
+_16 Mb3Rb_15LbQb2
+_14 Qbw2_13Ow3b3
+_12 Pbw3b
+_11 KbNbw2b3
+_10 Nw2bRbw
+_09 CwPwb2w
+_08 Pwbwb
+_07 NwPwbw2
+_06 CwKbMbwPwb
+_05 GbJwMbwbwbw
+_04 CbEbHbMbw2bRw
+_03 FbwbwLw2b4w2
+_02 GbwKw2Nwb2Rbw
+_01 JwMwObQbSb
+.K11b.w
+.M6-SQ.M5-SQ.M4-SQ.K6-SQ.J5-CR
+```
+
+Equivalent SGF (521 characters):
 
 ```sgf
 (;GM[1]FF[4]CA[UTF-8]SZ[19]
 ;AB[ja][db][jb][qb][fc][jc][kc][pc][ld][md][nd][qd][ke][pe][qe][pf][qg][rg][sg][oh][sh][mi][pi][qi][ri][oj][qj][pk][qk][pl][rl][pm][jn][ln][pn][go][lo][no][po][cp][ep][hp][lp][op][fq][hq][mq][nq][oq][pq][gr][nr][or][qr][ns][ps][rs]AW[ka][la][kb][mb][ob][pb][cc][dc][ic][lc][mc][oc][qf][rf][ng][og][pg][ph][qh][rh][ni][oi][mj][nj][rj][ck][ok][rk][ol][ql][mm][om][qm][rm][cn][mn][on][io][mo][oo][qo][mp][np][qp][gq][iq][kq][lq][qq][rq][hr][jr][kr][mr][rr][is][ls]
 ;B[ji]SQ[ln][lo][lp][jn]CR[io])
+```
+
+
+Equivalent URL-encoded SGF (1031 characters):
+
+```
+%28%3BGM%5B1%5DFF%5B4%5DCA%5BUTF-8%5DSZ%5B19%5D%0A%3BAB%5Bja%5D%5Bdb%5D%5Bjb%5D%5Bqb%5D%5Bfc%5D%5Bjc%5D%5Bkc%5D%5Bpc%5D%5Bld%5D%5Bmd%5D%5Bnd%5D%5Bqd%5D%5Bke%5D%5Bpe%5D%5Bqe%5D%5Bpf%5D%5Bqg%5D%5Brg%5D%5Bsg%5D%5Boh%5D%5Bsh%5D%5Bmi%5D%5Bpi%5D%5Bqi%5D%5Bri%5D%5Boj%5D%5Bqj%5D%5Bpk%5D%5Bqk%5D%5Bpl%5D%5Brl%5D%5Bpm%5D%5Bjn%5D%5Bln%5D%5Bpn%5D%5Bgo%5D%5Blo%5D%5Bno%5D%5Bpo%5D%5Bcp%5D%5Bep%5D%5Bhp%5D%5Blp%5D%5Bop%5D%5Bfq%5D%5Bhq%5D%5Bmq%5D%5Bnq%5D%5Boq%5D%5Bpq%5D%5Bgr%5D%5Bnr%5D%5Bor%5D%5Bqr%5D%5Bns%5D%5Bps%5D%5Brs%5DAW%5Bka%5D%5Bla%5D%5Bkb%5D%5Bmb%5D%5Bob%5D%5Bpb%5D%5Bcc%5D%5Bdc%5D%5Bic%5D%5Blc%5D%5Bmc%5D%5Boc%5D%5Bqf%5D%5Brf%5D%5Bng%5D%5Bog%5D%5Bpg%5D%5Bph%5D%5Bqh%5D%5Brh%5D%5Bni%5D%5Boi%5D%5Bmj%5D%5Bnj%5D%5Brj%5D%5Bck%5D%5Bok%5D%5Brk%5D%5Bol%5D%5Bql%5D%5Bmm%5D%5Bom%5D%5Bqm%5D%5Brm%5D%5Bcn%5D%5Bmn%5D%5Bon%5D%5Bio%5D%5Bmo%5D%5Boo%5D%5Bqo%5D%5Bmp%5D%5Bnp%5D%5Bqp%5D%5Bgq%5D%5Biq%5D%5Bkq%5D%5Blq%5D%5Bqq%5D%5Brq%5D%5Bhr%5D%5Bjr%5D%5Bkr%5D%5Bmr%5D%5Brr%5D%5Bis%5D%5Bls%5D%0A%3BB%5Bji%5DSQ%5Bln%5D%5Blo%5D%5Blp%5D%5Bjn%5DCR%5Bio%5D%29
 ```
