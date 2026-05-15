@@ -16,19 +16,20 @@ Conventions:
 ```ebnf
 <hen>                ::= { <part> } ;
 
-<part>               ::= <goban-size>
+<part>               ::= <goban-size> 
                        | <goban-row>
                        | <ko>
                        | <last-move>
                        | <turn>
                        | <label-annotation>
-                       | <symbol-annotation> ;
+                       | <symbol-annotation>
+                       | <player-order>; 
 
 (* A. Goban size *)
 <goban-size>         ::= "." <number> "x" <number> ;
 
 (* B. Goban content — one row at a time *)
-<goban-row>          ::= "_" <number> { <stone-seq-item> }+ ;
+<goban-row>          ::= "_" <number> { <stone-seq-item> | <numbered-stone> }+ ;
 
 (* C. Ko *)
 <ko>                 ::= "." <column> <number> ;
@@ -46,8 +47,14 @@ Conventions:
 (* G. Symbol *)
 <symbol-annotation>  ::= "." <column> <number> "-" <mark> ;
 
+(* H. Player order *)
+<player-order>       ::= "~" <stone> <stone> { <stone> } ;
+
 (* Goban row internals *)
 <stone-seq-item>     ::= [ <column> ] <stone> [ <number> ] ;
+
+(* Numbered stone *)
+<numbered-stone>     ::= [ <column> ] "~" <number> ;
 
 (* Primitives *)
 <column>             ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H"
@@ -80,10 +87,11 @@ The following constraints cannot be expressed in BNF and must be enforced separa
 
 1. **`<number>`** must represent a positive integer (value > 0). Leading zeros are allowed (e.g. `01` = `1`).
 2. In `<goban-row>`, the initial `<number>` is the **row number** and must be within the board height. The first `<column>` (if present) indicates the starting column; if omitted, it defaults to `"A"`.
-3. Each `<stone-seq-item>` without a `<column>` refers to the next adjacent column. A `<column>` indicates a skip (jump) to that column.
-4. `<stone> <number>` encodes a consecutive run of `<number>` stones of that color. The run must not extend beyond the board width.
-5. Parts **A–G** are all optional and may appear in any order. Whitespace characters (spaces, tabs, newlines) may appear freely between parts, as well as before the first part or after the last part, and are ignored by the parser.
+3. Each `<stone-seq-item>` or `<numbered-stone>` without a `<column>` refers to the next adjacent column. A `<column>` indicates a skip (jump) to that column.
+4. `<stone> <number>` encodes a consecutive run of `<number>` stones of that color. The run must not extend beyond the board width. In contrast, the `<number>` in `<numbered-stone>` represents the move number to display on that intersection.
+5. Parts **A–H** are all optional and may appear in any order. Whitespace characters (spaces, tabs, newlines) may appear freely between parts, as well as before the first part or after the last part, and are ignored by the parser.
 6. When the text after `"-"` in a `<label-annotation>` or `<symbol-annotation>` matches a `<mark>` value (`CR`, `SQ`, `TR`, `MA`), it is interpreted as a **symbol annotation** (part G), not a label.
+7. `<player-order>` must contain at least 2 `<stone>` values. When absent, the default player order is `"bw"`. The color of a `<numbered-stone>` is determined by cycling through the player order: move *k* takes the color at index `(k − 1) mod N`, where *N* is the number of stones in the player order.
 
 ---
 
@@ -102,3 +110,16 @@ Since multiple part types start with `"."`, a parser reads the characters after 
 | `<stone>`                             | E — turn |
 
 `<column>` (uppercase, no `I`) and `<stone>` (lowercase) never overlap, so the first character after `"."` unambiguously selects the branch.
+
+---
+
+## Disambiguation of `~`-prefixed elements
+
+The `~` character appears both as a top-level part (H) and inside goban rows (B). A parser distinguishes them by context:
+
+| Context | Lookahead pattern | Element |
+|---------|-------------------|---------|
+| Top-level | `<stone>` `<stone>` { `<stone>` } | H — player order |
+| Inside `<goban-row>` | [ `<column>` ] `<number>` | Numbered stone |
+
+`<stone>` (lowercase) and `<column>` (uppercase, no `I`) / `<number>` (digit) never overlap, so the context is unambiguous.

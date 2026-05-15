@@ -15,7 +15,7 @@ HEN fills this gap by providing a compact, snapshot-based format representing a 
 - Embedding board states in documentation without the overhead of full SGF trees.
 
 ## Structure
-A HEN string is composed of parts A through G. All parts are optional and may appear in any order. Whitespace, newlines, and tabs are completely ignored: a HEN string can exist on a single line or span multiple lines by breaking between parts.
+A HEN string is composed of parts A through H. All parts are optional and may appear in any order. Whitespace, newlines, and tabs are completely ignored: a HEN string can exist on a single line or span multiple lines by breaking between parts.
 
 A. Indicate the goban size:
 `.{number}x{number}` - e.g.: `.19x19`
@@ -39,6 +39,10 @@ F. Indicate a label:
 G. Indicate a symbol:
 `.{letter}{number}-{mark}` - e.g.: `.K10-X` 
 
+H. Indicate the **player order** (turn sequence):
+`~{stone}{stone}…` - e.g.: `~bw` (default, 2-player), `~bwr` (3-player), `~bwrg` (4-player)
+The player order defines how the color of a numbered stone (`~{number}` in goban rows) is determined: move *k* gets the color at position `(k − 1) mod N`, where *N* is the number of stones in the order. When part H is omitted, `~bw` is assumed.
+
 ## Goban content
 
 The content of the goban is constructed by observing the board from Black's side and proceeding one row at a time, from top to bottom.
@@ -53,6 +57,8 @@ Indicate the column letter (uppercase) of the first stone in that row, followed 
 The column letter `A` may be omitted when the first stone is in column A; e.g. `_19Ab` is equivalent to `_19b`.
 
 The `{stone}{number}` form can be used to encode consecutive runs of the same color; e.g. `_19bwbbwww` is equivalent to `_19bwb2w3`.
+
+To indicate a numbered move on an intersection, use the `~{number}` syntax (preceded by an optional column letter); e.g. `_19~1` or `_19K~12`. The color of a numbered stone is not explicitly written — it is inferred from the move number using the player order (see part H). In standard 2-player Go (the default), odd-numbered moves are Black and even-numbered moves are White.
 
 Repeat for each row containing at least 1 stone.
 
