@@ -37,7 +37,9 @@ F. Indicate a label:
 `.{letter}{number}-{label}` - e.g.: `.K10-a` 
 
 G. Indicate a symbol:
-`.{letter}{number}-{mark}` - e.g.: `.K10-X` 
+`.{letter}{number}-{mark}` - e.g.: `.K10-MA`
+
+> **Note:** When the text after `-` matches a mark value (`CR`, `SQ`, `TR`, `MA`), it is always interpreted as a symbol annotation (G), never as a label (F).
 
 H. Indicate the **player order** (turn sequence):
 `~{stone}{stone}…` - e.g.: `~bw` (default, 2-player), `~bwr` (3-player), `~bwrg` (4-player)
@@ -78,7 +80,7 @@ For multi-color Go, you can also use:
 - `y`: Yellow
 - `p`: Purple
 
-`{label}`: a simple text (typically a letter or a number).
+`{label}`: a sequence of printable characters, excluding whitespace, `.`, `_`, and `-`.
 
 `{mark}`: can be `CR`, `SQ`, `TR`, `MA` (respectively for: circle, square, triangle, X) 
 
@@ -153,4 +155,34 @@ Equivalent URL-encoded SGF (1031 characters):
 
 ```
 %28%3BGM%5B1%5DFF%5B4%5DCA%5BUTF-8%5DSZ%5B19%5D%0A%3BAB%5Bja%5D%5Bdb%5D%5Bjb%5D%5Bqb%5D%5Bfc%5D%5Bjc%5D%5Bkc%5D%5Bpc%5D%5Bld%5D%5Bmd%5D%5Bnd%5D%5Bqd%5D%5Bke%5D%5Bpe%5D%5Bqe%5D%5Bpf%5D%5Bqg%5D%5Brg%5D%5Bsg%5D%5Boh%5D%5Bsh%5D%5Bmi%5D%5Bpi%5D%5Bqi%5D%5Bri%5D%5Boj%5D%5Bqj%5D%5Bpk%5D%5Bqk%5D%5Bpl%5D%5Brl%5D%5Bpm%5D%5Bjn%5D%5Bln%5D%5Bpn%5D%5Bgo%5D%5Blo%5D%5Bno%5D%5Bpo%5D%5Bcp%5D%5Bep%5D%5Bhp%5D%5Blp%5D%5Bop%5D%5Bfq%5D%5Bhq%5D%5Bmq%5D%5Bnq%5D%5Boq%5D%5Bpq%5D%5Bgr%5D%5Bnr%5D%5Bor%5D%5Bqr%5D%5Bns%5D%5Bps%5D%5Brs%5DAW%5Bka%5D%5Bla%5D%5Bkb%5D%5Bmb%5D%5Bob%5D%5Bpb%5D%5Bcc%5D%5Bdc%5D%5Bic%5D%5Blc%5D%5Bmc%5D%5Boc%5D%5Bqf%5D%5Brf%5D%5Bng%5D%5Bog%5D%5Bpg%5D%5Bph%5D%5Bqh%5D%5Brh%5D%5Bni%5D%5Boi%5D%5Bmj%5D%5Bnj%5D%5Brj%5D%5Bck%5D%5Bok%5D%5Brk%5D%5Bol%5D%5Bql%5D%5Bmm%5D%5Bom%5D%5Bqm%5D%5Brm%5D%5Bcn%5D%5Bmn%5D%5Bon%5D%5Bio%5D%5Bmo%5D%5Boo%5D%5Bqo%5D%5Bmp%5D%5Bnp%5D%5Bqp%5D%5Bgq%5D%5Biq%5D%5Bkq%5D%5Blq%5D%5Bqq%5D%5Brq%5D%5Bhr%5D%5Bjr%5D%5Bkr%5D%5Bmr%5D%5Brr%5D%5Bis%5D%5Bls%5D%0A%3BB%5Bji%5DSQ%5Bln%5D%5Blo%5D%5Blp%5D%5Bjn%5DCR%5Bio%5D%29
+```
+
+### 3) Numbered stones mixed with explicit colors
+
+A 9×9 position combining numbered stones (`~{number}`) with explicit colored stones, based on the "Black influence" diagram from the Sensei's Library [9×9 Strategy](https://senseis.xmp.net/?9x9Strategy) page. The color of each numbered stone is inferred from the player order (default `~bw`): odd moves are Black, even moves are White.
+
+```
+.9x9_5Gb_4G~3_3E~1b~2~4_2Fw.H3w.b.E2-a
+```
+
+Multiple lines:
+
+```hen
+.9x9
+_5 Gb
+_4 G~3
+_3 E~1 b ~2 ~4
+_2 Fw
+.H3w
+.b
+.E2-a
+```
+
+Numbered moves: 1.E3(b) 2.G3(w) 3.G4(b) 4.H3(w). Row 3 (`_3E~1b~2~4`) demonstrates numbered stones interleaved with explicit stones: after `~1` at E, the explicit `b` occupies the next column (F), then `~2` at G and `~4` at H.
+
+
+Equivalent SGF:
+```sgf
+(;GM[1]FF[4]CA[UTF-8]SZ[9]
+;B[fg];B[ge];W[fh];B[eg];W[gg];B[gf];W[hg]LB[eg:1][gf:3][gg:2][hg:4])
 ```
