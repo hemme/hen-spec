@@ -186,3 +186,15 @@ Equivalent SGF:
 (;GM[1]FF[4]CA[UTF-8]SZ[9]
 ;B[fg];B[ge];W[fh];B[eg];W[gg];B[gf];W[hg]LB[eg:1][gf:3][gg:2][hg:4])
 ```
+
+## Related resources
+
+### Functional Manifesto
+- [PNG<sup>+hen</sup>](https://hemme.github.io/png-hen/index.html) - A hassle-free way to share and restore Go positions using standard images.
+
+### Libraries
+- [hen-js](https://github.com/hemme/hen-js) - A JavaScript library for parsing and generating HEN strings.
+- [hen-python](https://github.com/hemme/hen-python) - A Python library for parsing and generating HEN strings.
+
+### HEN-compliant projects
+- [goshawk-extension](https://github.com/hemme/goshawk-extension) - A browser extension to capture Go diagrams and export them as SGF or HEN.
